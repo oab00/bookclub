@@ -1,3 +1,24 @@
-<div class="col-md-12">
-This is the bookshelf view.
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+	<div class="col-md-3">
+		<h4>My Info: </h4>
+		<ul>
+			<li>Full Name: </li>
+			<li>Location: </li>
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<h2>Add a book:</h2>
+		<form>
+			<label><input class="form-control" placeholder="Type a book name" /></label>
+			<button class="btn btn-primary">Search</button>
+		</form>
+		<hr />
+		<h2>My Books:</h2>
+		<ul>
+			<li>book1</li>
+			<li>book2</li>
+		</ul>
+	</div>
 </div>
