@@ -22,9 +22,16 @@ exports.show = function(req, res) {
 
 // Creates a new book in the DB.
 exports.create = function(req, res) {
-  Book.create(req.body, function(err, book) {
-    if(err) { return handleError(res, err); }
-    return res.json(201, book);
+  Book.find({
+    name: req.body.name,
+    "user._id": req.body.user._id
+  }, function(err, book) {
+    if (book.length > 0) { return res.send(422); }
+
+    Book.create(req.body, function(err, book) {
+      if(err) { return handleError(res, err); }
+       return res.json(201, book);
+     });
   });
 };
 

@@ -1,7 +1,11 @@
 'use strict';
 
 angular.module('bookclubApp')
-  .controller('BookshelfCtrl', function ($scope, $http) {
+  .controller('BookshelfCtrl', function ($scope, $http, $location, Auth) {
+
+  	if (!Auth.isLoggedIn()) {
+  		$location.path('/login');
+  	}
     
     $scope.search = function() {
 
@@ -38,10 +42,23 @@ angular.module('bookclubApp')
 
 	};
 
-	$scope.searchInput = 'ابراهيم دلع';
-
 	$scope.addBook = function(index) {
-		console.log($scope.books[index]);
+		$http.post('/api/books', {
+				name: $scope.books[index].name,
+				img: $scope.books[index].img,
+				user: user
+			}).error(function(err) {
+				// print already exists
+			});
 	};
+
+	$scope.getMyBooks = function() {
+		// get my books
+	};
+	
+	var user = Auth.getCurrentUser();
+
+	$scope.searchInput = 'ابراهيم دلع';
+	$scope.search();
 
   });
