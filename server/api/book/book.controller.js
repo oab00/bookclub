@@ -2,6 +2,7 @@
 
 var _ = require('lodash');
 var Book = require('./book.model');
+var booksApi = require('google-books-search');
 
 // Get list of books
 exports.index = function(req, res) {
@@ -20,13 +21,30 @@ exports.show = function(req, res) {
   });
 };
 
+// Get books by user ID
+exports.getByUserId = function(req, res) {
+  Book.find({
+    "user._id": req.params.id
+  }, function(err, books) {
+    if (err) { return handleError(res, err); }
+    return res.json(books);
+  });
+};
+
+// Search for books
+exports.searchBooks = function(req, res) {
+  booksApi.search(req.params.input, function(err, data) {
+    return res.json({data: data});
+  });
+};
+
 // Creates a new book in the DB.
 exports.create = function(req, res) {
   Book.find({
     name: req.body.name,
     "user._id": req.body.user._id
-  }, function(err, book) {
-    if (book.length > 0) { return res.send(422); }
+  }, function(err, books) {
+    if (books.length > 0) { return res.send(422); }
 
     Book.create(req.body, function(err, book) {
       if(err) { return handleError(res, err); }

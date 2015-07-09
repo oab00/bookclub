@@ -6,6 +6,8 @@ var controller = require('./book.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
+router.get('/user/:id', controller.getByUserId);
+router.get('/search/:input', controller.searchBooks);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
