@@ -35,12 +35,15 @@ angular.module('bookclubApp')
 		$http.post('/api/books', {
 				name: $scope.books[index].name,
 				img: $scope.books[index].img,
-				user: user
+				user: $scope.user
 			}).success(function(data) {
 				$scope.myBooks.push(data);
 			}).error(function(err) {
-				// print already exists
+				// book already exists in user's bookshelf
 			});
+
+		// TODO: take out the add button or include something to tell
+		// 		 that the user already added said book
 	};
 
 	$scope.removeBook = function(index) {
@@ -49,13 +52,17 @@ angular.module('bookclubApp')
 	};
 
 	$scope.getMyBooks = function() {
-		$http.get('/api/books/user/' + user._id)
+		$http.get('/api/books/user/' + $scope.user._id)
 			.success(function(data) {
 				$scope.myBooks = data;
 			});
 	};
+
+	$http.get('/api/users/me').success(function(data) {
+		$scope.user = data;
+	});
+	$scope.user = Auth.getCurrentUser();
 	
-	var user = Auth.getCurrentUser();
 	$scope.getMyBooks();
 	$scope.searchInput = '';
 	$scope.searched = false;

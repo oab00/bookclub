@@ -2,14 +2,23 @@
 
 <div class="container bookshelf">
 	<div class="col-md-3">
-		<h4>My Info: </h4>
+		<h2>My Info: </h2>
 		<ul>
-			<li>Full Name: </li>
-			<li>Location: </li>
+			<li>
+				<strong>Full Name:</strong><br />
+				<p class="info">{{ user.firstName + ' ' + user.lastName }}</p>
+			</li>
+			<li>
+				<strong>Location:</strong><br />
+				<p class="info">{{ user.city + ', ' + user.state }}</p>
+			</li>
 		</ul>
+		<button class="btn btn-info">Edit</button>
+		<p>*hover over books for more info</p>
 	</div>
+
 	<div class="col-md-9">
-		<h2>Add a book:</h2>
+		<h2>Add books:</h2>
 		<form>
 			<label>
 				<input ng-model="searchInput" class="form-control" placeholder="Type a book name" />
