@@ -5,6 +5,7 @@ angular.module('bookclubApp')
 
   	if (!Auth.isLoggedIn()) {
   		$location.path('/login');
+  		setTimeout(function() { alert('You need to login!');}, 100);
   	}
     
     $scope.searchBooks = function() {
@@ -40,6 +41,7 @@ angular.module('bookclubApp')
 				$scope.myBooks.push(data);
 			}).error(function(err) {
 				// book already exists in user's bookshelf
+				alert('Book is already in your bookshelf!');
 			});
 
 		// TODO: take out the add button or include something to tell
@@ -56,6 +58,10 @@ angular.module('bookclubApp')
 			.success(function(data) {
 				$scope.myBooks = data;
 			});
+	};
+
+	$scope.gotoEdit = function() {
+		$location.path('/settings');
 	};
 
 	$http.get('/api/users/me').success(function(data) {

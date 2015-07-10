@@ -2,12 +2,28 @@
 
 <header class="hero-unit" id="banner">
   <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
+    <h1>Book Trading Club</h1>
+    <p class="lead">Post, view, and trade books in the club!</p>
+    
+    <img src="http://canchild.ca/en/ourresearch/resources/Books-icon.png" width="100px" height="100px">
+
+    <div style="margin-top: 20px;">
+      <div ng-hide="loggedIn">
+        <a href="/login"><button class="btn btn-info btn-l">Login</button></a>
+        or
+        <a href="/signup"><button class="btn btn-success">Sign Up</button></a>
+      </div>
+
+      <div ng-show="loggedIn">
+        <a href="/bookshelf"><button class="btn btn-info">Check Your Bookshelf</button></a>
+        or
+        <a href="/books"><button class="btn btn-success">Visit The Club</button></a>
+      </div>
+    </div>
+
   </div>
 </header>
-
+<!--
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
@@ -28,11 +44,13 @@
     </p>
   </form>
 </div>
+-->
 
 <footer class="footer">
   <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+      <p>
+        FreeCodeCamp Book Trading Club Basejump |
+        <a href="https://github.com/oab00/bookclub">@oab00</a>
+      </p>
   </div>
 </footer>

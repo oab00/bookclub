@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('bookclubApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -23,5 +23,9 @@ angular.module('bookclubApp')
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('thing');
+    });
+    
+    Auth.isLoggedInAsync(function(data) {
+      $scope.loggedIn = data;
     });
   });

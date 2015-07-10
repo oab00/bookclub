@@ -4,7 +4,8 @@ angular.module('bookclubApp')
   .controller('SettingsCtrl', function ($scope, User, Auth, $http) {
     $scope.errors = {};
 
-    var infos = ['firstName', 'lastName', 'city', 'state'], info, updatedUser;
+    var infos = ['firstName', 'lastName', 'city', 'state'], info, updatedUser,
+        infoPrompts = ['First Name', 'Last Name', 'City', 'State'];
 
     $scope.user = Auth.getCurrentUser();
     for (info in infos) {
@@ -12,23 +13,24 @@ angular.module('bookclubApp')
     }
 
     $scope.infoSuccess = false;
+    $scope.infoAlert = false;
 
     $scope.changeInfo = function() {
       updatedUser = {};
 
       for (info in infos) {
         if ($scope[infos[info]] === '' || $scope[infos[info]] === undefined) {
-          console.log(infos[info], 'is empty.');
+          $scope.infoError = infoPrompts[info];
+          $scope.infoAlert = true;
           return;
         }
         updatedUser[infos[info]] = $scope[infos[info]];
       }
-      
+      $scope.infoAlert = false;
+
       $http.put('/api/users/' + $scope.user._id + '/info', updatedUser)
           .success(function() {
             $scope.infoSuccess = true;
-          }).error(function(err) {
-            console.log('error!', err);
           });     
     };
 

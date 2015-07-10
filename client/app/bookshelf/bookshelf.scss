@@ -41,3 +41,14 @@
 .info {
 	margin-left: 20px;
 }
+
+.user p {
+	display: inline-block;
+	margin: 0;
+	padding: 5px;
+}
+
+.user p:hover {
+	border: 1px dashed green;
+	cursor: pointer;
+}

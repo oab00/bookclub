@@ -8,6 +8,9 @@ angular.module('bookclubApp')
     },{
       'title': 'Bookshelf',
       'link': '/bookshelf'
+    },{
+      'title': 'The Club',
+      'link': '/books'
     }];
 
     $scope.isCollapsed = true;

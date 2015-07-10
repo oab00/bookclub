@@ -1,0 +1,35 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container bookshelf">
+	<div class="col-md-3">
+		<h2>Users: </h2>
+		<ul>
+			<li ng-repeat="user in users" class="user">
+				<p ng-click="filterBooks($index)"><strong>{{ user.name }}</strong></p>
+			</li>
+		</ul>
+		<p>*click a user to filter books</p>
+		<button class="btn btn-danger" ng-show="filtered" ng-click="reset()">reset filter</button>
+	</div>
+
+	<div class="col-md-9">
+		<h2>All The Books:</h2>
+		<hr />
+
+		<div class="book" ng-repeat="book in books" ng-attr-title="{{book.name}}">
+			<div class="book-info">
+				<!--<button class="btn btn-warning add-button" ng-click="tradeBook($index)">Trade Book</button>-->
+			</div>
+			<img ng-src="{{book.img}}">
+		</div>
+	</div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>
+        FreeCodeCamp Book Trading Club Basejump |
+        <a href="https://github.com/oab00/bookclub">@oab00</a>
+      </p>
+  </div>
+</footer>

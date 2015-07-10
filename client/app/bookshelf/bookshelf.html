@@ -6,15 +6,17 @@
 		<ul>
 			<li>
 				<strong>Full Name:</strong><br />
-				<p class="info">{{ user.firstName + ' ' + user.lastName }}</p>
+				<p class="info" ng-show="user.firstName || user.lastName">{{ user.firstName + ' ' + user.lastName }}</p>
+				<p class="info" style="color: red;" ng-show="!user.firstName && !user.lastName">no info found</p>
 			</li>
 			<li>
 				<strong>Location:</strong><br />
-				<p class="info">{{ user.city + ', ' + user.state }}</p>
+				<p class="info" ng-show="user.city || user.state">{{ user.city + ', ' + user.state }}</p>
+				<p class="info" style="color: red;" ng-show="!user.city && !user.state">no info found</p>
 			</li>
 		</ul>
-		<button class="btn btn-info">Edit</button>
-		<p>*hover over books for more info</p>
+		<button class="btn btn-info" ng-click="gotoEdit()">Edit My Info</button>
+		<p>*hover over books for more</p>
 	</div>
 
 	<div class="col-md-9">
@@ -48,3 +50,12 @@
 		</div>
 	</div>
 </div>
+
+<footer class="footer">
+  <div class="container">
+      <p>
+        FreeCodeCamp Book Trading Club Basejump |
+        <a href="https://github.com/oab00/bookclub">@oab00</a>
+      </p>
+  </div>
+</footer>
